@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jatin Sharma — MERN Stack Developer</title>
-<meta name="description" content="Jatin Sharma is a MERN Stack Developer with 4 years of experience building and shipping full-stack web applications with MongoDB, Express.js, React.js and Node.js.">
+<meta name="description" content="Jatin Sharma is a MERN Stack Developer with 4+ years of experience building and shipping full-stack web applications with MongoDB, Express.js, React.js and Node.js.">
 <meta property="og:title" content="Jatin Sharma — MERN Stack Developer">
 <meta property="og:description" content="Full-stack developer building REST APIs, React UIs and real-time features. Based in Delhi, India.">
 <meta property="og:type" content="website">
@@ -297,6 +297,36 @@ footer .wrap {
   font-family: var(--mono); font-size: 12.5px; color: var(--muted);
 }
 
+/* ---------- email chooser ---------- */
+.mail-dialog {
+  width: min(420px, calc(100vw - 32px)); padding: 0; border: 1px solid var(--line);
+  border-radius: 20px; background: var(--surface); color: var(--text); box-shadow: var(--shadow);
+}
+.mail-dialog::backdrop { background: rgba(5, 10, 8, .6); backdrop-filter: blur(3px); }
+.mail-inner { padding: 26px; }
+.mail-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.mail-head h2 { font-family: var(--display); font-weight: 600; font-size: 22px; letter-spacing: -.02em; line-height: 1.2; }
+.mail-head p { color: var(--muted); font-size: 14px; margin-top: 4px; }
+.mail-close {
+  display: grid; place-items: center; flex: none; width: 34px; height: 34px;
+  border: 1px solid var(--line); border-radius: 10px; background: transparent; color: var(--muted); cursor: pointer;
+}
+.mail-close:hover { color: var(--text); border-color: var(--accent); }
+.mail-close svg { width: 15px; height: 15px; }
+.mail-options { display: grid; gap: 8px; margin-top: 20px; }
+.mail-options a, .mail-options button {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%;
+  padding: 13px 16px; border: 1px solid var(--line); border-radius: 12px;
+  background: var(--surface-2); color: var(--text); font: inherit; font-size: 15px; font-weight: 500;
+  text-align: left; cursor: pointer; transition: border-color .15s;
+}
+.mail-options a:hover, .mail-options button:hover { border-color: var(--accent); }
+.mail-options small { font-family: var(--mono); font-size: 11.5px; font-weight: 400; color: var(--muted); }
+.mail-addr {
+  margin-top: 18px; font-family: var(--mono); font-size: 12.5px; color: var(--muted);
+  text-align: center; overflow-wrap: anywhere;
+}
+
 /* ---------- reveal ---------- */
 .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
 .js .reveal.in { opacity: 1; transform: none; }
@@ -340,7 +370,7 @@ footer .wrap {
       <p class="role reveal"><b>MERN Stack Developer</b> — MongoDB · Express · React · Node</p>
       <p class="lede reveal">I build and ship full-stack web applications end to end: RESTful APIs, MongoDB schemas, responsive React interfaces and AWS deployments, backed by tests and code review.</p>
       <div class="cta reveal">
-        <a class="btn primary" href="mailto:j9599231642@gmail.com">
+        <a class="btn primary" href="mailto:j9599231642@gmail.com" data-email>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
           Get in touch
         </a>
@@ -355,7 +385,7 @@ footer .wrap {
       </div>
 
       <div class="stats reveal">
-        <div class="stat"><strong>4 yrs</strong><span>building full-stack web apps</span></div>
+        <div class="stat"><strong>4+ yrs</strong><span>building full-stack web apps</span></div>
         <div class="stat"><strong>1,200+</strong><span>Jest tests across 100+ suites</span></div>
         <div class="stat"><strong>200+</strong><span>controller, service and route modules</span></div>
         <div class="stat"><strong>160</strong><span>versioned database migrations</span></div>
@@ -482,7 +512,7 @@ footer .wrap {
       <div class="contact-box reveal">
         <h2>Let's build something.</h2>
         <p>Open to conversations about full-stack roles and interesting products. Email is the fastest way to reach me.</p>
-        <a class="mail" href="mailto:j9599231642@gmail.com">j9599231642@gmail.com</a>
+        <a class="mail" href="mailto:j9599231642@gmail.com" data-email>j9599231642@gmail.com</a>
         <div class="socials">
           <a class="btn" href="https://github.com/SageJatin" target="_blank" rel="noopener">github.com/SageJatin</a>
           <a class="btn" href="https://www.linkedin.com/in/jatin-sharma-365281218" target="_blank" rel="noopener">LinkedIn profile</a>
@@ -499,6 +529,28 @@ footer .wrap {
     <span>Delhi, India</span>
   </div>
 </footer>
+
+<dialog class="mail-dialog" id="mailDialog" aria-labelledby="mailTitle">
+  <div class="mail-inner">
+    <div class="mail-head">
+      <div>
+        <h2 id="mailTitle">Send me an email</h2>
+        <p>Pick the email service you use.</p>
+      </div>
+      <button class="mail-close" id="mailClose" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="mail-options">
+      <a id="mailGmail" target="_blank" rel="noopener" href="mailto:j9599231642@gmail.com">Gmail <small>opens in a new tab</small></a>
+      <a id="mailOutlook" target="_blank" rel="noopener" href="mailto:j9599231642@gmail.com">Outlook <small>opens in a new tab</small></a>
+      <a id="mailYahoo" target="_blank" rel="noopener" href="mailto:j9599231642@gmail.com">Yahoo Mail <small>opens in a new tab</small></a>
+      <a id="mailApp" href="mailto:j9599231642@gmail.com">Mail app on this device <small>default app</small></a>
+      <button id="mailCopy" type="button">Copy email address <small id="mailCopied" aria-live="polite"></small></button>
+    </div>
+    <p class="mail-addr">j9599231642@gmail.com</p>
+  </div>
+</dialog>
 
 <button class="to-top" id="toTop" type="button" aria-label="Back to top">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
@@ -522,6 +574,37 @@ footer .wrap {
     function syncTop() { toTop.classList.toggle('show', window.scrollY > 500); }
     window.addEventListener('scroll', syncTop, { passive: true });
     syncTop();
+    // Email chooser: without it, a plain mailto link does nothing for
+    // visitors who have no desktop mail app set up.
+    var EMAIL = 'j9599231642@gmail.com';
+    var SUBJECT = 'Hello Jatin — reaching out from your portfolio';
+    var dlg = document.getElementById('mailDialog');
+    if (dlg && typeof dlg.showModal === 'function') {
+      var to = encodeURIComponent(EMAIL), su = encodeURIComponent(SUBJECT);
+      document.getElementById('mailGmail').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + to + '&su=' + su;
+      document.getElementById('mailOutlook').href = 'https://outlook.live.com/mail/0/deeplink/compose?to=' + to + '&subject=' + su;
+      document.getElementById('mailYahoo').href = 'https://compose.mail.yahoo.com/?to=' + to + '&subject=' + su;
+      document.getElementById('mailApp').href = 'mailto:' + EMAIL + '?subject=' + su;
+
+      document.querySelectorAll('[data-email]').forEach(function (el) {
+        el.addEventListener('click', function (e) { e.preventDefault(); dlg.showModal(); });
+      });
+      document.getElementById('mailClose').addEventListener('click', function () { dlg.close(); });
+      dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+      dlg.querySelectorAll('.mail-options a').forEach(function (a) {
+        a.addEventListener('click', function () { dlg.close(); });
+      });
+
+      var copied = document.getElementById('mailCopied');
+      document.getElementById('mailCopy').addEventListener('click', function () {
+        var done = function (ok) { copied.textContent = ok ? 'copied' : 'select it below'; };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(EMAIL).then(function () { done(true); }, function () { done(false); });
+        } else { done(false); }
+      });
+      dlg.addEventListener('close', function () { copied.textContent = ''; });
+    }
+
     toTop.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
     });
